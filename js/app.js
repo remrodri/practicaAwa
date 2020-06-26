@@ -1,16 +1,7 @@
 
-//service worker para produccion
-var url = window.location.href;
-var swLocation = '/practicaAwa/sw.js';
 
-
-//este service worker esta bien solo en desarrollo
 if ( navigator.serviceWorker ) {
-
-    if(url.includes('localhost')){
-        swLocation = '/sw.js';
-    }
-    navigator.serviceWorker.register(swLocation);
+    navigator.serviceWorker.register('/sw.js');
 }
 
 // if (window.caches) {

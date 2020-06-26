@@ -4,17 +4,31 @@ self.addEventListener('install', e => {
         .then(cache => {
             cache.addAll([
                 '/',
-                'index.html',
-                'css/style.css',
-                'img/main.jpg',
+                '/index.html',
+                '/css/style.css',
+                '/img/main.jpg',
                 'https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css',
-                'js/app.js'
+                '/js/app.js'
             ]);
         });
     e.waitUntil(cacheProm); 
 });
 
-/* self.addEventListener('fetch', e =>{
+ self.addEventListener('fetch', e =>{
     //1- cache only
     e.respondWith(caches.match(e.request));
-}); */
+    
+    //2- cache with network fallback
+    // const respuesta = caches.match(e.request)
+    //     .then(res=>{
+    //         if (res) return res;
+    //         // no existe el archivo
+    //         // me voy pa la web
+    //         console.log('No existe', e.request.url);
+    //         return fetch(e.request)
+    //             .then(newResp =>{
+    //                 return newResp;
+    //             });
+    //     });
+    // e.respondWith(respuesta);
+}); 
