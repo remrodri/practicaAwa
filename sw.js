@@ -1,9 +1,11 @@
+const CACHE_NAME ='cache-v1';
+
 self.addEventListener('install', e => {
 
-    const cacheProm = caches.open('cache-v1')
+    const cacheProm = caches.open(CACHE_NAME)
         .then(cache => {
             cache.addAll([
-                '/',
+                '/', 
                 '/index.html',
                 '/css/style.css',
                 '/img/main.jpg',
@@ -27,9 +29,13 @@ self.addEventListener('install', e => {
              // no existe el archivo
              // me voy pa la web
              console.log('No existe  ', e.request.url);
-             return fetch(e.request)
-                 .then(newResp =>{
-                     return newResp;
+             return fetch(e.request).then(newResp =>{
+
+                    caches.open(CACHE_NAME)
+                    .then(cache=>{
+                        cache.put(e.request,newResp);
+                    });
+                     return newResp.clone();
                  });
          });
      e.respondWith(respuesta);
