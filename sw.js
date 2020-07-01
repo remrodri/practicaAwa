@@ -4,6 +4,8 @@ const CACHE_STATIC_NAME = 'static-v2';
 const CACHE_DYNAMIC_NAME = 'dynamic-v1';
 const CACHE_INMUTABLE_NAME = 'inmutable-v1';
 
+const CACHE_DYNAMIC_LIMIT = 50;
+
 function limpiarCache(cacheName,numeroItems){
     caches.open(cacheName)
     .then(cache=>{
@@ -39,27 +41,48 @@ self.addEventListener('install', e => {
 });
 
  self.addEventListener('fetch', e =>{
-    //1- cache only
-    //e.respondWith(caches.match(e.request));
+    //3- network with cache fallback
+    //busca en inter el recurso y si no hay busca en el cache
+
+    const respuesta = fetch(e.request).then(res =>{
+
+        if(!res) return caches.match(e.request);
+
+        caches.open(CACHE_DYNAMIC_NAME)
+            .then(cache =>{
+                cache.put(e.request.res);
+                limpiarCache(CACHE_DYNAMIC_NAME,CACHE_DYNAMIC_LIMIT);
+
+            });
+        
+        return res.clone();
+
+    }).catch(err =>{
+        return caches.match( respuesta );  
+    });
     
     //2- cache with network fallback
     //busca first en la cache y sino esta recien
     //busca en internet
-     const respuesta = caches.match(e.request)
-         .then(res=>{
-             if (res) return res;
-             // no existe el archivo
-             // me voy pa la web
-             console.log('No existe  ', e.request.url);
-             return fetch(e.request).then(newResp =>{
+    //  const respuesta = caches.match(e.request)
+    //      .then(res=>{
+    //          if (res) return res;
+    //          // no existe el archivo
+    //          // me voy pa la web
+    //          console.log('No existe  ', e.request.url);
+    //          return fetch(e.request).then(newResp =>{
 
-                    caches.open(CACHE_DYNAMIC_NAME)
-                    .then(cache=>{
-                        cache.put(e.request,newResp);
-                        limpiarCache(CACHE_DYNAMIC_NAME,5);
-                    });
-                     return newResp.clone();
-                 });
-         });
+    //                 caches.open(CACHE_DYNAMIC_NAME)
+    //                 .then(cache=>{
+    //                     cache.put(e.request,newResp);
+    //                     limpiarCache(CACHE_DYNAMIC_NAME,5);
+    //                 });
+    //                  return newResp.clone();
+    //              });
+    //      });
+
+    //1- cache only
+    //e.respondWith(caches.match(e.request));
+
      e.respondWith(respuesta);
 }); 
