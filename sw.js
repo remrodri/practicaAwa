@@ -1,8 +1,21 @@
 //const CACHE_NAME ='cache-v1';
 
-const CACHE_STATIC_NAME = 'static-v1';
+const CACHE_STATIC_NAME = 'static-v2';
 const CACHE_DYNAMIC_NAME = 'dynamic-v1';
 const CACHE_INMUTABLE_NAME = 'inmutable-v1';
+
+function limpiarCache(cacheName,numeroItems){
+    caches.open(cacheName)
+    .then(cache=>{
+        return cache.keys()
+            .then(keys => {
+                if(keys.length > numeroItems){
+                    cache.delete( keys[0] )
+                    .then(limpiarCache(cacheName, numeroItems))
+                }
+            });
+    });
+};
 
 self.addEventListener('install', e => {
 
@@ -43,6 +56,7 @@ self.addEventListener('install', e => {
                     caches.open(CACHE_DYNAMIC_NAME)
                     .then(cache=>{
                         cache.put(e.request,newResp);
+                        limpiarCache(CACHE_DYNAMIC_NAME,5);
                     });
                      return newResp.clone();
                  });
