@@ -1,5 +1,3 @@
-//const CACHE_NAME ='cache-v1';
-
 const CACHE_STATIC_NAME = 'static-v2';
 const CACHE_DYNAMIC_NAME = 'dynamic-v1';
 const CACHE_INMUTABLE_NAME = 'inmutable-v1';
@@ -28,8 +26,8 @@ self.addEventListener('install', e => {
                 '/index.html',
                 '/css/style.css',
                 '/img/main.jpg',
-                
-                '/js/app.js'
+                '/js/app.js',
+                '/img/no-img.jpg'
             ]);
         });
 
@@ -42,19 +40,56 @@ self.addEventListener('install', e => {
 
  self.addEventListener('fetch', e =>{
 
+    //5.- Cache & network Race
+    //estrategia competencia para ver cual responde primero la cache o la velocidad del fetch
+    //cache mas lento q la red
+    //ver promise race
+    //lo mas rapido q se puede obtener la respuesta
+
+     const respuesta = new Promise((resolve,reject)=>{
+        let rechazada = false;
+        const falloUnaVez = ()=>{
+            if(rechazada) {
+
+                if ( /\.(png|jpg)$/i.test(e.request.url ) ){
+                    resolve( caches.match('/img/no-img.jpg') );
+                } else {
+                    reject('No se encontro respuesta');
+                }
+
+            }else{
+                rechazada = true;
+            }
+        };
+
+        fetch( e.request ).then(res =>{
+            res.ok ? resolve(res): falloUnaVez();
+        }).catch( falloUnaVez );
+
+        caches.match(e.request).then(res =>{
+            res ? resolve(res): falloUnaVez();
+        }).catch( falloUnaVez );
+
+     });
+    
+    
+    e.respondWith(respuesta);
+
+
     //4.- cache with netwok update
     //cuando el rendimiento es critico, q aprezca lo mas rapido posible
     //siempre estara un version atras a una actualizacion
 
-    if(e.request.url.includes('bootstrap')){ //evaluacion del bootstrap
-        return e.respondWith(caches.match(e.request));
-    }
-    const respuesta = caches.open(CACHE_STATIC_NAME)
-        .then(cache=>{
-            fetch(e.request).then(newRes=>
-                cache.put(e.request, newRes));
-            return cache.match(respuesta);
-        });
+    // if(e.request.url.includes('bootstrap')){ //evaluacion del bootstrap
+    //     return e.respondWith(caches.match(e.request));
+    // }
+    // const respuesta = caches.open(CACHE_STATIC_NAME)
+    //     .then(cache=>{
+    //         fetch(e.request).then(newRes=>
+    //             cache.put(e.request, newRes));
+    //         return cache.match(respuesta);
+    //     });
+    //      e.responWith( respuesta )
 
     //3- network with cache fallback
     //busca en inter el recurso y si no hay busca en el cache
