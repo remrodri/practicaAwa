@@ -1,3 +1,3 @@
-# Practia PWA
+# Practica PWA
 
 Un cascarón de mensajeria usando jQuery para PWAs
