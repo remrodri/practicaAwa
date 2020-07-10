@@ -52,7 +52,7 @@ self.addEventListener('activate', e => {
     e.waitUntil( respuesta );
 });
 
-//recordar dinamyc cache => network fallback
+//recordar dinamyc cache => cache with network fallback
 
 self.addEventListener('fetch', e=>{
 
