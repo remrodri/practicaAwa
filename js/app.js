@@ -9,6 +9,33 @@ if( navigator.serviceWorker ) {
     navigator.serviceWorker.register( swLocation );
 }
 
+//se actualiza cuando se crea o se sube de version de la DB
+let request = window.indexedDB.open('mi-database',1);
+request.onupgradeneeded = event => {
+    console.log('Actualizacion de BD');
+    let db = event.target.result;
+    db.createObjectStore('usuarios',{
+        keypath: 'id'
+    });
+};
+
+//manejo de errores
+request.onerror = event =>{
+    console.log('DB error',event.target.error);
+};
+//insertar datos
+request.onsuccess = event =>{
+    let db = event.target.result;
+    let usuariosData =[
+        {id:'111',usuario: 'Spiderman', mensaje: 'soy spiderman'},
+        {id:'222',usuario: 'ironman', mensaje: 'soy ironman'}
+
+    ];
+
+let usuariosTransacction = db.usuariosTransacction('usuarios','readwrite');
+
+};
+
 // Referencias de jQuery
 
 var titulo      = $('#titulo');
