@@ -1,3 +1,3 @@
 # Practica PWA
 
-Un cascarón de mensajeria usando jQuery para PWAs
+comenando por el envio de mensajes
