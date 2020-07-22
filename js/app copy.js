@@ -9,15 +9,15 @@ if( navigator.serviceWorker ) {
     navigator.serviceWorker.register( swLocation );
 }
 
-//se actualiza cuando se crea o se sube de version de la DB
-let request = window.indexedDB.open('mi-database',1);
-request.onupgradeneeded = event => {
-    console.log('Actualizacion de BD');
-    let db = event.target.result;
-    db.createObjectStore('usuarios',{
-        keypath: 'id'
-    });
-};
+// //se actualiza cuando se crea o se sube de version de la DB
+// let request = window.indexedDB.open('mi-database',1);
+// request.onupgradeneeded = event => {
+//     console.log('Actualizacion de BD');
+//     let db = event.target.result;
+//     db.createObjectStore('usuarios',{
+//         keypath: 'id'
+//     });
+// };
 
 //manejo de errores
 request.onerror = event =>{
@@ -32,7 +32,7 @@ request.onsuccess = event =>{
 
     ];
 
-let usuariosTransacction = db.usuariosTransacction('usuarios','readwrite');
+// let usuariosTransacction = db.usuariosTransacction('usuarios','readwrite');
 
 };
 
@@ -51,7 +51,7 @@ var modalAvatar = $('#modal-avatar');
 var avatarBtns  = $('.seleccion-avatar');
 var txtMensaje  = $('#txtMensaje');
 
-// El usuario, contiene el ID del héroe seleccionado
+// El usuario, contiene el ID del profe seleccionado
 var usuario;
 
 

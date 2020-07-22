@@ -19,6 +19,7 @@ const APP_SHELL =[
     'js/sw-utils.js'
 ];
 
+//todo lo que viene de terceros y que no tocare
 const APP_SHELL_INMUTABLE =[
     'https://fonts.googleapis.com/css?family=Quicksand:300,400',
     'https://fonts.googleapis.com/css?family=Lato:400,300',

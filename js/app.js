@@ -2,18 +2,26 @@ var url = window.location.href;
 var swLocation = '/practicaAwa/sw.js'
 
 if( navigator.serviceWorker ) {
-    
+
     if(url.includes('localhost')) {
         swLocation = '/sw.js';
     }
     navigator.serviceWorker.register( swLocation );
 }
+//-------------------
+//pruebas en indexdb
+
+
 
 //se actualiza cuando se crea o se sube de version de la DB
 let request = window.indexedDB.open('mi-database',1);
+
 request.onupgradeneeded = event => {
+
     console.log('Actualizacion de BD');
+
     let db = event.target.result;
+
     db.createObjectStore('usuarios',{
         keypath: 'id'
     });
@@ -24,17 +32,42 @@ request.onerror = event =>{
     console.log('DB error',event.target.error);
 };
 
+//insertar datos
 request.onsuccess = event =>{
+
     let db = event.target.result;
+
     let usuariosData =[
         {id:'111',usuario: 'Spiderman', mensaje: 'soy spiderman'},
         {id:'222',usuario: 'ironman', mensaje: 'soy ironman'}
-
     ];
 
-let usuariosTransacction = db.usuariosTransacction('usuarios','readwrite');
+    let usuariosTransaction = db.transaction('usuarios','readwrite');
+
+    usuariosTransaction.onerror = event => {
+        console.log('error guardando', event.target.error);
+    };
+
+    //informa sobre el exito de la transaccion
+    usuariosTransaction.oncomplete = event => {
+        console.log('transaccion hecha', event);
+    };
+
+    let usuariosStore = usuariosTransaction.objectStore('usuarios');
+    
+    for(let usuario of usuariosData) {
+        usuariosStore.add( usuario );
+    }
+ 
+    heroesStore.onsuccess = event =>{
+        console.log('nuevo item agregado a la base de datos');
+    }
+
+
 
 };
+
+//-------------------------
 
 // Referencias de jQuery
 
@@ -51,7 +84,7 @@ var modalAvatar = $('#modal-avatar');
 var avatarBtns  = $('.seleccion-avatar');
 var txtMensaje  = $('#txtMensaje');
 
-// El usuario, contiene el ID del héroe seleccionado
+// El usuario, contiene el ID del profe seleccionado
 var usuario;
 
 
