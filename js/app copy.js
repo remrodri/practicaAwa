@@ -2,7 +2,7 @@ var url = window.location.href;
 var swLocation = '/practicaAwa/sw.js'
 
 if( navigator.serviceWorker ) {
-    
+
     if(url.includes('localhost')) {
         swLocation = '/sw.js';
     }
@@ -23,7 +23,7 @@ request.onupgradeneeded = event => {
 request.onerror = event =>{
     console.log('DB error',event.target.error);
 };
-
+//insertar datos
 request.onsuccess = event =>{
     let db = event.target.result;
     let usuariosData =[
