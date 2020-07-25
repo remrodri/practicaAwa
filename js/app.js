@@ -10,11 +10,8 @@ if( navigator.serviceWorker ) {
 }
 //-------------------
 //pruebas en indexdb
-
-
-
 //se actualiza cuando se crea o se sube de version de la DB
-let request = window.indexedDB.open('mi-database',1);
+let request = window.indexedDB.open('mi-database', 1);
 
 request.onupgradeneeded = event => {
 
@@ -22,8 +19,8 @@ request.onupgradeneeded = event => {
 
     let db = event.target.result;
 
-    db.createObjectStore('usuarios',{
-        keypath: 'id'
+    db.createObjectStore('usuarios', {
+        keyPath: 'id'
     });
 };
 
@@ -38,11 +35,11 @@ request.onsuccess = event =>{
     let db = event.target.result;
 
     let usuariosData =[
-        {id:'111',usuario: 'Spiderman', mensaje: 'soy spiderman'},
-        {id:'222',usuario: 'ironman', mensaje: 'soy ironman'}
+        { id: '1111',usuario: 'Spiderman', mensaje: 'soy spiderman' },
+        { id: '2222',usuario: 'ironman', mensaje: 'soy ironman' }
     ];
 
-    let usuariosTransaction = db.transaction('usuarios','readwrite');
+    let usuariosTransaction = db.transaction('usuarios', 'readwrite');
 
     usuariosTransaction.onerror = event => {
         console.log('error guardando', event.target.error);
@@ -58,8 +55,8 @@ request.onsuccess = event =>{
     for(let usuario of usuariosData) {
         usuariosStore.add( usuario );
     }
- 
-    heroesStore.onsuccess = event =>{
+
+    usuariosStore.onsuccess = event => {
         console.log('nuevo item agregado a la base de datos');
     }
 
