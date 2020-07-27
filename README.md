@@ -5,7 +5,7 @@ a la del dia viernes 10 de julio no se registraron entonces se agregaran tambien
 
 ## Comenzando 🚀
 
-_descargar el proyecto e ir a la direccion del proyecto con el CMD y escribir el comando "hhtp-server tambien ya puede revisar el proyecto mediante git_pages"._
+_descargar el proyecto e ir a la direccion del proyecto con el CMD y escribir el comando "http-server tambien ya puede revisar el proyecto mediante git_pages"._
 
 ### Pre-requisitos 📋
 
@@ -25,27 +25,14 @@ _herramientas que estoy utilizando_
 
 Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/remrodri/practicaAwa).
 
-## Autores ✒️
+## Autor ✒️
 
-_Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
+_Rembert Rodrigo Tucuman alarcon_
 
-* **Andrés Villanueva** - *Trabajo Inicial* - [villanuevand](https://github.com/villanuevand)
-* **Fulanito Detal** - *Documentación* - [fulanitodetal](#fulanito-de-tal)
+* **Rembert Rodrigo Tucuman Alarcon** - *Proyecto* - 
+[remrodri](https://github.com/remrodri) 
 
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/your/project/contributors) quíenes han participado en este proyecto. 
+## Problemas y Soluciones planteadas durante el desarrollo del proyecto 📄
 
-## Licencia 📄
+aqui vendran mis problemas y soluciones
 
-Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo [LICENSE.md](LICENSE.md) para detalles
-
-## Expresiones de Gratitud 🎁
-
-* Comenta a otros sobre este proyecto 📢
-* Invita una cerveza 🍺 o un café ☕ a alguien del equipo. 
-* Da las gracias públicamente 🤓.
-* etc.
-
-
-
----
-⌨️ con ❤️ por [Villanuevand](https://github.com/Villanuevand) 😊

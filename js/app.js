@@ -42,7 +42,7 @@ request.onsuccess = event =>{
     let usuariosTransaction = db.transaction('usuarios', 'readwrite');
 
     usuariosTransaction.onerror = event => {
-        console.log('error guardando', event.target.error);
+        console.log('error guardado', event.target.error);
     };
 
     //informa sobre el exito de la transaccion
@@ -59,8 +59,6 @@ request.onsuccess = event =>{
     usuariosStore.onsuccess = event => {
         console.log('nuevo item agregado a la base de datos');
     }
-
-
 
 };
 
