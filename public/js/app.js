@@ -1,6 +1,6 @@
 
 var url = window.location.href;
-var swLocation = '/twittor/sw.js';
+var swLocation = '/educativa/sw.js';
 
 
 if ( navigator.serviceWorker ) {
@@ -33,24 +33,24 @@ var modalAvatar = $('#modal-avatar');
 var avatarBtns  = $('.seleccion-avatar');
 var txtMensaje  = $('#txtMensaje');
 
-// El usuario, contiene el ID del hÃ©roe seleccionado
+// El usuario, contiene el ID del usuario seleccionado
 var usuario;
 
 
 
 
-// ===== Codigo de la aplicaciÃ³n
+// ===== Codigo de la aplicacion
 
-function crearMensajeHTML(mensaje, personaje) {
+function crearMensajeHTML(mensaje, usuario) {
 
     var content =`
     <li class="animated fadeIn fast">
         <div class="avatar">
-            <img src="img/avatars/${ personaje }.jpg">
+            <img src="img/avatars/${ usuario }.jpg">
         </div>
         <div class="bubble-container">
             <div class="bubble">
-                <h3>@${ personaje }</h3>
+                <h3>@${ usuario }</h3>
                 <br/>
                 ${ mensaje }
             </div>
@@ -89,7 +89,7 @@ function logIn( ingreso ) {
 }
 
 
-// Seleccion de personaje
+// Seleccion de usuario
 avatarBtns.on('click', function() {
 
     usuario = $(this).data('user');
@@ -143,3 +143,20 @@ postBtn.on('click', function() {
     crearMensajeHTML( mensaje, usuario );
 
 });
+
+//obtener mensajes del servidor, consumir mi servicio rest
+function getMensajes(){
+
+    fetch('api') //porq corre en el mismo hosting
+        .then( res => res.json() )
+        .then( posts => {
+            console.log(posts);
+            posts.forEach( post => {
+                crearMensajeHTML(post.mensaje, post.user);
+
+            });
+
+        } );
+};
+
+getMensajes();
