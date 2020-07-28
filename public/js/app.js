@@ -1,40 +1,22 @@
+
 var url = window.location.href;
-var swLocation = '/practicaAwa/sw.js'
+var swLocation = '/twittor/sw.js';
 
-if( navigator.serviceWorker ) {
 
-    if(url.includes('localhost')) {
+if ( navigator.serviceWorker ) {
+
+
+    if ( url.includes('localhost') ) {
         swLocation = '/sw.js';
     }
+
+
     navigator.serviceWorker.register( swLocation );
 }
 
-// //se actualiza cuando se crea o se sube de version de la DB
-// let request = window.indexedDB.open('mi-database',1);
-// request.onupgradeneeded = event => {
-//     console.log('Actualizacion de BD');
-//     let db = event.target.result;
-//     db.createObjectStore('usuarios',{
-//         keypath: 'id'
-//     });
-// };
 
-//manejo de errores
-request.onerror = event =>{
-    console.log('DB error',event.target.error);
-};
-//insertar datos
-request.onsuccess = event =>{
-    let db = event.target.result;
-    let usuariosData =[
-        {id:'111',usuario: 'Spiderman', mensaje: 'soy spiderman'},
-        {id:'222',usuario: 'ironman', mensaje: 'soy ironman'}
 
-    ];
 
-// let usuariosTransacction = db.usuariosTransacction('usuarios','readwrite');
-
-};
 
 // Referencias de jQuery
 
@@ -51,13 +33,13 @@ var modalAvatar = $('#modal-avatar');
 var avatarBtns  = $('.seleccion-avatar');
 var txtMensaje  = $('#txtMensaje');
 
-// El usuario, contiene el ID del profe seleccionado
+// El usuario, contiene el ID del hÃ©roe seleccionado
 var usuario;
 
 
 
 
-// ===== Codigo de la aplicación
+// ===== Codigo de la aplicaciÃ³n
 
 function crearMensajeHTML(mensaje, personaje) {
 
@@ -138,13 +120,15 @@ nuevoBtn.on('click', function() {
 
 // Boton de cancelar mensaje
 cancelarBtn.on('click', function() {
-   modal.animate({ 
-       marginTop: '+=1000px',
-       opacity: 0
-    }, 200, function() {
-        modal.addClass('oculto');
-        txtMensaje.val('');
-    });
+    if ( !modal.hasClass('oculto') ) {
+        modal.animate({ 
+            marginTop: '+=1000px',
+            opacity: 0
+         }, 200, function() {
+             modal.addClass('oculto');
+             txtMensaje.val('');
+         });
+    }
 });
 
 // Boton de enviar mensaje
