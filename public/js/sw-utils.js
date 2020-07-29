@@ -1,8 +1,8 @@
-
+//importScripts('js/sw-db.js');
 
 // Guardar  en el cache dinamico
 function actualizaCacheDinamico( dynamicCache, req, res ) {
-
+    
 
     if ( res.ok ) {
 
@@ -43,7 +43,15 @@ function manejoApiMensajes( cacheName, req ) {
 
     if ( req.clone().method === 'POST' ) {
         //POSTEO de un nuevo mensaje
-        
+
+        req.clone().text().then(body =>{
+
+            //console.log(body);
+            const bodyObj = JSON.parse( body );
+            guardarMensaje( bodyObj ); 
+
+        });
+
         // tengo q guardar en el indexDB
         return fetch (req);
 
