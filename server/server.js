@@ -4,9 +4,13 @@ const path = require('path');
 
 const app = express();
 
+const bodyParser = require('body-parser');
+
 const publicPath = path.resolve(__dirname, '../public');
 const port = process.env.PORT || 3000;
 
+app.use(bodyParser.json()); //support json encoded bodies
+app.use(bodyParser.urlencoded({extended: true})); //suport
 
 // Directorio Público
 app.use(express.static(publicPath));
