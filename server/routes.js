@@ -7,16 +7,6 @@ const mensajes = [
     _id: 'XX',
     user: 'spiderman',
     mensaje:'hola mundo'
-  },
-  {
-    _id: 'xxx',
-    user: 'ironman',
-    mensaje:'hola mundo'
-  },
-  {
-    _id: 'xxxx',
-    user: 'hulk',
-    mensaje:'hola mundo'
   }
 ];
 

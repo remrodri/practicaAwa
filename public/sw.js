@@ -75,26 +75,34 @@ self.addEventListener('activate', e => {
 
 self.addEventListener( 'fetch', e => {
 
+    let respuesta;
 
-    const respuesta = caches.match( e.request ).then( res => {
+    if(e.request.url.includes('/api') ) {
 
-        if ( res ) {
-            
-            actualizaCacheStatico( STATIC_CACHE, e.request, APP_SHELL_INMUTABLE );
-            return res;
-        } else {
+        //return respuesta???
+        respuesta =  manejoApiMensajes( DYNAMIC_CACHE, e.request );
 
-            return fetch( e.request ).then( newRes => {
+    } else {
 
-                return actualizaCacheDinamico( DYNAMIC_CACHE, e.request, newRes );
+        respuesta = caches.match( e.request ).then( res => {
+    
+            if ( res ) {
+                
+                actualizaCacheStatico( STATIC_CACHE, e.request, APP_SHELL_INMUTABLE );
+                return res;
+            } else {
+    
+                return fetch( e.request ).then( newRes => {
+    
+                    return actualizaCacheDinamico( DYNAMIC_CACHE, e.request, newRes );
+    
+                });
+    
+            }
+    
+        });
 
-            });
-
-        }
-
-    });
-
-
+    }
 
     e.respondWith( respuesta );
 
