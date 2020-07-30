@@ -72,10 +72,6 @@ self.addEventListener('activate', e => {
 
 });
 
-
-
-
-
 self.addEventListener( 'fetch', e => {
 
     let respuesta;
@@ -111,4 +107,17 @@ self.addEventListener( 'fetch', e => {
 
 });
 
+// tareas asincronas
+self.addEventListener('sync', e =>{
 
+    console.log('SW: Sync');
+
+    if( e.tag === 'nuevo-post' ) {
+
+        //postear a BD cuando hay conexion
+
+        //e.waitUntil( ??? );
+
+    }
+
+});
