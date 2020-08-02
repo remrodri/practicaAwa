@@ -205,3 +205,54 @@ window.addEventListener('offline', isOnline );
 
 isOnline();
 
+// para pedir al ususario que me de permiso para enviar notificaciones
+
+function enviarNotificaciones() {
+
+const notificationOptions = {
+    
+    body: 'Este es el cuerpo de la notificacion',
+    icon: 'img/icons/icon-72x72.png'
+
+}
+    const n = new Notification('Hola Mundo', notificationOptions);
+
+    n.onclick = () =>{
+
+        console.log('Click');
+
+    }
+
+}
+
+function notificarme() {
+
+    //verifico si el navegador lo soporta
+    if (!window.Notification) {
+
+        console.log('Este navegador no soporta notificaciones');
+        return;
+        
+    }
+    if (Notification.permission === 'granted') {
+
+        // new Notification('Hola mundo! - granted')        
+        enviarNotificaciones()
+
+    } else if (Notification.permission !== 'denied' || Notification.permission==='default' ) {
+
+        Notification.requestPermission(function( permiso ){
+            
+            console.log(permiso);
+
+            if(permiso === 'granted') {
+
+                // new Notification('Hola Mundo - pregunta');
+                enviarNotificaciones();
+
+            }
+        });        
+    }
+}
+
+notificarme();
