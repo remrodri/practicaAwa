@@ -33,6 +33,9 @@ var modalAvatar = $('#modal-avatar');
 var avatarBtns  = $('.seleccion-avatar');
 var txtMensaje  = $('#txtMensaje');
 
+var btnActivadas    =$('.btn-noti-activadas');
+var btnDesactivadas =$('.btn-noti-desactivadas');
+
 // El usuario, contiene el ID del usuario seleccionado
 var usuario;
 
@@ -205,7 +208,26 @@ window.addEventListener('offline', isOnline );
 
 isOnline();
 
-// para pedir al ususario que me de permiso para enviar notificaciones
+
+
+// todo sobre las notificaciones para pedir al ususario que me de permiso para enviar notificaciones
+
+function verificaSuscripcion( activadas ) {
+
+    if( activadas  ) {
+
+        btnActivadas.removeClass('oculto');
+        btnDesactivadas.addClass('oculto');
+
+    } else {
+
+        btnActivadas.addClass('oculto');
+        btnDesactivadas.removeClass('oculto');
+
+    }
+}
+
+verificaSuscripcion();
 
 function enviarNotificaciones() {
 
@@ -255,4 +277,4 @@ function notificarme() {
     }
 }
 
-notificarme();
+// notificarme();
