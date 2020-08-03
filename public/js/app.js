@@ -1,6 +1,7 @@
 
 var url = window.location.href;
 var swLocation = '/educativa/sw.js';
+var swReg;
 
 
 if ( navigator.serviceWorker ) {
@@ -10,8 +11,19 @@ if ( navigator.serviceWorker ) {
         swLocation = '/sw.js';
     }
 
+    window.addEventListener('load', function() {
+        
+        navigator.serviceWorker.register( swLocation )
+            .then( function(reg) {
 
-    navigator.serviceWorker.register( swLocation );
+            swReg = reg;
+            swReg.pushManager.getSubscription()
+                .then( verificaSuscripcion );
+
+            })
+
+    })
+
 }
 
 
@@ -227,7 +239,7 @@ function verificaSuscripcion( activadas ) {
     }
 }
 
-verificaSuscripcion();
+//verificaSuscripcion();
 
 function enviarNotificaciones() {
 
@@ -293,4 +305,24 @@ function getPublicKey() {
 };
 
 
-getPublicKey().then( console.log );
+//getPublicKey().then( console.log );
+
+btnDesactivadas.on( 'click' , function() {
+    if ( !swReg ) return console.log('no hay registro del SW');
+
+    getPublicKey().then( function( key ){
+
+        swReg.pushManager.subscribe({
+            userVisibleOnly: true,
+            applicationServerKey: key
+        })
+        .then( res => res.toJSON())
+        .then( suscripcion => {
+            
+            console.log(suscripcion);
+
+            verificaSuscripcion(suscripcion);
+
+        })
+    });
+}); 
