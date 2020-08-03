@@ -46,9 +46,9 @@ router.post('/subscribe',(req, res) => {
 router.get('/key',(req, res) => {
 
   const key = push.getKey();
-  res.json(key);
+  res.send(key);
 
-res.json('key publico');
+
 
 });
 
