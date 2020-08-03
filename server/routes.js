@@ -34,4 +34,27 @@ console.log( mensajes );
   });
 });
 
+//almacenar la suscripcion almacena subscripciones de los clientes
+router.post('/subscribe',(req, res) => {
+
+  res.json('subscribe');
+
+});
+
+//obtener el key publico /mandarle la key publica
+router.get('/key',(req, res) => {
+
+res.json('key publico');
+
+});
+
+//enviar una notificacion push a las personas 
+//que nosotros querramos
+router.get('/push', (req, res) => {
+
+  res.json('key publico');
+
+});
+
+
 module.exports = router;
