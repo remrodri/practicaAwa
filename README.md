@@ -15,12 +15,14 @@ _tener instalado Node.js_
 
 _herramientas que estoy utilizando_
 
-* [Visual Studio Code](https://code.visualstudio.com/) - como edito de codigo
-* [Node.js](https://nodejs.org/es/) - package manager
-* [Git](https://git-scm.com/) - para manejo de versiones del codigo del proyecto
-* [POSTMAN](https://www.postman.com/) - Descripcion
+* [Visual Studio Code](https://code.visualstudio.com/) - como edito de codigo.
+* [Node.js](https://nodejs.org/es/) - package manager.
+* [Git](https://git-scm.com/) - para manejo de versiones del codigo del proyecto.
+* [POSTMAN](https://www.postman.com/) - para testeo de las peticiones get, post.
 * [Google Chrome](https://www.google.com/intl/es-419/chrome/) - por las herrmaientas de desarrollo
-* [pouchdb](https://pouchdb.com/) - Descripcion
+* [pouchdb](https://pouchdb.com/) - para el manejo de indexDB ya que facilita mucho la codificacion al permitir el uso de callbacks pero especialmente promesas en lugar de codear a fuerza bruta.
+
+* tambien se estan utilizando dependencias que facilitan mucho varias tareas.
 
 ## Versionado 📌
 
