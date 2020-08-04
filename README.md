@@ -140,7 +140,9 @@ no hay una sola esttrategia para todas las paginas web / aplicacion web
 se utilizo la caracteristica de github pages para visualizar en la web la aplicacion y realizar pruebas pero se encontro un problema en el despliegue en dispositivos IOS que tienen NOTCH en la pantalla en las versiones de IPHONE X en adelante
 [aqui se encontro la posible solucion a aplicar](https://medium.com/appscope/designing-native-like-progressive-web-apps-for-ios-1b3cdda1d0e8)
 
+### para saber si la PWA que se esta desarrollando esta correcta es decir cumple con las caracteristicas de una PWA puede utilizarse la herramienta LIGHTHOUSE en las herramientas de desaarrollador.
 
+### IndexDB tiene mucho codigo para codear en  el caso de usar javaScript puro ademas q las llamadas de algunas funciones no concuerdan con las convenciones de mantener la primera letra de la  primera palabra en minuscula y las demas que comiencen con Mayusculas y eso me causaron problemas al buscar los errores que me aparecian luego de revisar la documentacion encontre la solucion. debido a esto se cambia al uso de pouchDB para la gestion del indexDB por su uso basado en promesas  como muestra en su documentacion en callbacks tendremos la posibildad de cambiarlo a solo uso mediante promesas 
 
 
 
