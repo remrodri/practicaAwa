@@ -2,23 +2,24 @@
 
 _trabajando aun en la PWA Educativa._
 
-## Comenzando 🚀
-
-para las primeras versiones
-_descargar el proyecto e ir a la direccion del proyecto con el CMD y escribir el comando "http-server tambien ya puede revisar el proyecto mediante git_pages"._
-
-para la actual version
-_descargar el proyecto y dirigirse a la ubicacion mendiante el uso del CMD y escribir los comandos
-
-* npm install
-* npm run deb
-._
-
-
 
 ### Pre-requisitos 📋
 
 _tener instalado Node.js_
+
+## Comenzando 🚀
+
+PARA LA ULTIMA VERSION
+_descargar el proyecto y dirigirse a la ubicacion mendiante el uso del CMD y escribir los comandos: ._
+
+* npm install
+* npm run dev
+_en el buscador entrar escribiendo._
+
+* http://localhost:3000/
+
+para las primeras versiones
+_descargar el proyecto e ir a la direccion del proyecto con el CMD y escribir el comando "http-server" escribiendo en el navegador localhost:8080._
 
 ## Construido con 🛠️
 
@@ -28,14 +29,17 @@ _herramientas que estoy utilizando_
 * [Node.js](https://nodejs.org/es/) - package manager.
 * [Git](https://git-scm.com/) - para manejo de versiones del codigo del proyecto.
 * [POSTMAN](https://www.postman.com/) - para testeo de las peticiones get, post.
-* [Google Chrome](https://www.google.com/intl/es-419/chrome/) - por las herrmaientas de desarrollo
+* [Google Chrome](https://www.google.com/intl/es-419/chrome/) - por las herrmaientas de desarrollador
 * [pouchdb](https://pouchdb.com/) - para el manejo de indexDB ya que facilita mucho la codificacion al permitir el uso de callbacks pero especialmente promesas en lugar de codear a fuerza bruta.
-
 * tambien se estan utilizando dependencias que facilitan mucho varias tareas.
-
+* [body-parser](https://www.npmjs.com/package/body-parser) - es lo que permite a Express leer el cuerpo y luego analizarlo en un objeto Json que podamos entender.
+* [express.js](https://expressjs.com/es/) - Express es una infraestructura de aplicaciones web Node.js mínima y flexible que proporciona un conjunto sólido de características para las aplicaciones web y móviles.
+* [web-push](https://www.npmjs.com/package/web-push) - generador de VAPID keys es un juego de llaves que nos a servir para poder enviar notificaciones push.
+* [urlsafe-base64](https://www.npmjs.com/package/urlsafe-base64) - se utlizo para mara mantener seguras las llaves publicas utilizadas para las notificaciones push.
+* [nodemon](https://www.npmjs.com/package/nodemon) - nodemon es una herramienta que ayuda a desarrollar aplicaciones basadas en node.js reiniciando automáticamente la aplicación de node cuando se detectan cambios de archivo en el directorio.
 ## Versionado 📌
 
-Para todas las versiones disponibles, mira los [tags en este repositorio](https://github.com/remrodri/practicaAwa).
+Para todas las versiones disponibles, los [tags en este repositorio](https://github.com/remrodri/practicaAwa).
 
 ## Integrantes del grupo ✒️
 
@@ -71,7 +75,7 @@ para ese caso las PWA no necesitan pedir permiso al usario para realizar actuali
 
 [cada vez mas suben los porcentajes de uso de moviles para la navegacion web, aunque los desktop siguen manteniendose a un bien porcentaje](https://gs.statcounter.com/platform-market-share/desktop-mobile/worldwide/#monthly-201907-202007-bar)
 
-la grafica anterior nos dice que deberiamos considerar mantenernos tanto en los mobile como los desktop.
+la grafica del link anterior nos dice que deberiamos considerar mantenernos tanto en los mobile como los desktop.
 si bien ayuda el concepto de responsive una PWA no es solo eso(hay que tener muy en cuanta).
 
 ### Las PWA son la evolucion de los sitios o aplicaciones web.
@@ -88,7 +92,27 @@ si bien ayuda el concepto de responsive una PWA no es solo eso(hay que tener muy
 - Push Server nos permitira enviar notificaciones push a nuestro usuarios
 
 ### Consideraciones sobre el sw
-se debe servir sobre un protocolo HTTPS porque el service worker(sw) tendra mucho poder sobre nuestras aplicaciones web
+se debe servir sobre un protocolo HTTPS porque el Service Worker(sw) tendra mucho poder sobre nuestras aplicaciones web o en localhost
+corre en el background en un hilo independiente a la Web App
+
+## registro de problemas y soluciones en el desarrollo del proyecto
+
+### promesas en lugar de callbacks por el problema de callbacksHell es decir evitar escribir demasiado codigo para tareas simples tambien usar caracteristicas ECMA script 6
+practica de promesas el uso de PWA's usa todo el tiempo promesas mediante el uso de funciones lambda o funciones anonimas
+
+### fetch API en lugar XMLHttpRequest para hacer peticiones por su simplicidad
+fetch API son la mejor opcion para trabajar con peticiones por su simplicidad en la implementacion
+se utilizo por las funcion 'response.clone' para clonar peticiones
+y tambien mayor simplicidad en el manejo de errores
+
+### se debe revisar en la pagina de 'Can I use' la compatibilidad del SW(service worker) con los navegadores, es soportado en casi todos
+[para consultar click aqui](https://caniuse.com/#search=service%20worker)
+
+
+
+
+
+
 
 
 
