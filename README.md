@@ -104,9 +104,43 @@ practica de promesas el uso de PWA's usa todo el tiempo promesas mediante el uso
 fetch API son la mejor opcion para trabajar con peticiones por su simplicidad en la implementacion
 se utilizo por las funcion 'response.clone' para clonar peticiones
 y tambien mayor simplicidad en el manejo de errores
+se hizo varias pruebas cambiando la estructura del index.html y agregando caracteristicas css
 
 ### se debe revisar en la pagina de 'Can I use' la compatibilidad del SW(service worker) con los navegadores, es soportado en casi todos
 [para consultar click aqui](https://caniuse.com/#search=service%20worker)
+
+### listeners mas utilizados en el SW (SW en un gran conjunto de listeners)
+* install
+* activate
+* event.waitUntil();
+* Fetch
+* Sync
+* Push
+
+### estrategias del cache que pueden utilizarse segun la necesidad
+[prueba de compatibilidad con los navegadores](https://caniuse.com/#search=cache) - aceptado al 92.97%
+
+no hay una sola esttrategia para todas las paginas web / aplicacion web
+* estrategia Cache Only - trabaja con solo los recursos alamacenados en la cache y nunca regresa a la web.
+
+* estrategia Cache with network fallback - intenta buscar el recurso en el cache y sino busca en la web y lo guarda en la cache por si es requerido en el futuro
+
+* estrategia Cache Dinamico - para evitar las mezcla de tipos de cache se divide la cache segun la necesidad, en el proyecto se utiliza la:
+ _cache Static que contiene la App sehll para contener los recursos de la pagina web/aplicacion._
+ _cache Dinamica que contiene recursos que variaran con el tiempo._
+ _cache Inmutable que contiene recursos de terceros como librerias y demas que no cambiaran._
+
+ * estrategia network with cache fallback - primero ir a la web intentar obtener el recurso y si lo obtiene que lo muestre y en caso de que no se encuentre que busque recien en la cache
+
+ * estrategia cache with Network Update  - muy util cuando el rendimiento es critico, cuando necesitas que nuestra aplicacion aparezca lo mas anter posible para que el usuario sienta que esta trabajando en una aplicacion nativa pero la actualizacion estara una version atras de la version que esta en la web hasta q el usuario actualize la pagina
+
+ * estrategia cache and network Race - una competencia para ver cual de los dos responde primero si el cache o la red, aplicado a casos en los que el usuario tiene un telefono lento pero con una velocidad de internet lenta de esta manera se brindara al usuario la velocidad mas rapida de respuesta en las peticiones
+
+### manejo del despliegue a otros dispositivos
+se utilizo la caracteristica de github pages para visualizar en la web la aplicacion y realizar pruebas pero se encontro un problema en el despliegue en dispositivos IOS que tienen NOTCH en la pantalla en las versiones de IPHONE X en adelante
+[aqui se encontro la posible solucion a aplicar](https://medium.com/appscope/designing-native-like-progressive-web-apps-for-ios-1b3cdda1d0e8)
+
+
 
 
 
