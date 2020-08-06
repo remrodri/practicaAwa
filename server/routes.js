@@ -38,6 +38,9 @@ console.log( mensajes );
 //almacenar la suscripcion almacena subscripciones de los clientes
 router.post('/subscribe',(req, res) => {
 
+  const suscripcion = req.body;
+  console.log( suscripcion );
+  
   res.json('subscribe');
 
 });
@@ -47,8 +50,8 @@ router.get('/key',(req, res) => {
 
   const key = push.getKey();
   res.send(key);
-
-
+  
+  
 
 });
 
