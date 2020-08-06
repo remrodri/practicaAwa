@@ -14,6 +14,7 @@ _descargar el proyecto y dirigirse a la ubicacion mendiante el uso del CMD y esc
 
 * npm install
 * npm run dev
+
 _en el buscador entrar escribiendo._
 
 * http://localhost:3000/
